@@ -1,0 +1,54 @@
+template(name='addCollabModal')
+  #addCollabModal.modal.fade(tabindex='-1', role='dialog' aria-hidden='true')
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal')
+            span(aria-hidden='true') ×
+            span.sr-only Close
+          h4.modal-title Collaborators
+        .modal-body
+          .inner-content
+            form.form-inline
+              p Type in the username of the collaborator you would like to add
+              .form-group
+                //-input.form-control.collab-username(type='text', name='collab-username', placeholder='e.g. nearpoint027')
+                +inputAutocomplete(settings=settings class="collab-username form-control" placeholder="username")
+              button.btn.btn-primary#submitCollabUsername(type='submit')
+                i.glyphicon.glyphicon-plus
+          hr
+          .inner-content
+            if set.pending.collaborators
+              p Pending Collaborators
+              each set.pending.collaborators
+                .user-collab-pending
+                  span #{username} 
+                  i.fa.fa-circle(class=userOnline) 
+                  //- span #{firstName}
+                  //- span #{lastName}
+                  span - Pending
+                  if owner
+                    | - 
+                    .remove-pending-collab(data-id=userId) Remove
+            br
+            p Current Collaborators
+              .user-collab
+                span #{ownerUsername} 
+                i.fa.fa-circle(class=adminOnline) 
+                //- span #{profile.firstName}
+                //- span #{profile.lastName}
+                span - Admin
+            if set.collaborators
+              each set.collaborators
+                .user-collab
+                  span.userPill #{username} 
+                  i.fa.fa-circle(class=userOnline)
+                  if allowedToRemove
+                    span - 
+                    //- span #{firstName}
+                    //- span #{lastName}
+                    a.removeCollab(href='#') Remove
+        .modal-footer
+          .save-close
+            button.btn.btn-default(type='button', data-dismiss='modal') Close
+

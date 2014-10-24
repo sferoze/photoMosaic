@@ -30,6 +30,7 @@ Router.map ->
         Router.go 'dashboard'
   @route 'dashboard',
     path: '/dashboard',
-    # waitOn: ->
+    waitOn: ->
+      Meteor.subscribe 'myPhotoCollections', Meteor.userId()
     # data: ->
 

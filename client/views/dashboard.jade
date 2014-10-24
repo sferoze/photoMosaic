@@ -1,2 +1,11 @@
 template(name='dashboard')
-  h4 Welcome to the Dashboard
+  #dashboard
+    .btn.btn-default#addPhotoCollection Add Photo Collection
+    #photoCollectionsGrid
+      each myPhotoCollections
+        +photoCollectionItem
+
+template(name='photoCollectionItem')
+  .photo-collection-item
+    p #{name}
+    .btn-default.btn.open-settings Settings
