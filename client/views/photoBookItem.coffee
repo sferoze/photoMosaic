@@ -1,5 +1,7 @@
-Template.photoCollectionItem.rendered = ->
-  @$(".photo-collection-item").hover (->
+# the jade page for photoBookItem is in dashboard.jade
+
+Template.photoBookItem.rendered = ->
+  @$(".photo-book-item").hover (->
     editDeleteButtons = $(@).find('.hover-buttons')
     editDeleteButtons.css 'visibility', 'visible'
   ), ->

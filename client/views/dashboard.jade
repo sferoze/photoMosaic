@@ -1,11 +1,11 @@
 template(name='dashboard')
   #dashboard
-    .btn.btn-default#addPhotoCollection Add Photo Collection
-    #photoCollectionsGrid
-      each myPhotoCollections
-        +photoCollectionItem
+    .btn.btn-default#addPhotoBook Add Photo Book
+    #photoBooksGrid
+      each myphotoBooks
+        +photoBookItem
 
-template(name='photoCollectionItem')
-  .photo-collection-item
+template(name='photoBookItem')
+  a.photo-book-item(href='{{pathFor "photoBookPage" _id=this._id}}')
     p #{name}
     .btn-default.btn.open-settings Settings

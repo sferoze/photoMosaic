@@ -1,0 +1,16 @@
+template(name='photoBookPage')
+  .row
+    .col-xs-12
+      button#takePicture.btn.btn-default Take Picture
+      button#logPosition position
+  .row
+    .col-lg-12
+      #photoGridWrapper
+        #photoGrid
+          each capturedImage
+            +photoItem
+
+template(name='photoItem')
+  .item(class=mobile)
+    a.strip(data-strip-caption="Ayvalık, Turkey (Nejdet Düzen)", href=blob.url, data-strip-group="mygroup")
+      img(src=blob.url)

@@ -1,20 +1,37 @@
-@PhotoCollections = new Mongo.Collection('photocollections')
+@PhotoBooks = new Mongo.Collection('photobooks')
 
-PhotoCollections.allow
+PhotoBooks.allow
   update: collabOfDocument
   remove: ownsDocument
 
 
 Meteor.methods 
-  addPhotoCollection: () ->
+  addPhotoBook: () ->
 
     params =
-      name: 'Untitled Photo Collection'
+      name: 'Untitled Photo Book'
       createdAt: new Date()
       userId: Meteor.userId()
       collaborators: []
       pictureQuality: 80
       public: false
 
-    id = PhotoCollections.insert params
-  
+    id = PhotoBooks.insert params
+
+  # removePendingCollab: () ->
+
+  # addCollab: () ->
+
+  # removeCollab: () ->
+
+  # movePhotoBookToTrash: (_id) ->
+
+  # restorePhotoBook: (_id) ->
+
+  # removePhotoBook: (_id) ->
+
+  # acceptCollab: (params) ->
+
+  # denyCollab: (params) ->
+
+  # 

@@ -18,9 +18,9 @@ template(name='addCollabModal')
                 i.glyphicon.glyphicon-plus
           hr
           .inner-content
-            if set.pending.collaborators
+            if photoBook.pending.collaborators
               p Pending Collaborators
-              each set.pending.collaborators
+              each photoBook.pending.collaborators
                 .user-collab-pending
                   span #{username} 
                   i.fa.fa-circle(class=userOnline) 
@@ -38,8 +38,8 @@ template(name='addCollabModal')
                 //- span #{profile.firstName}
                 //- span #{profile.lastName}
                 span - Admin
-            if set.collaborators
-              each set.collaborators
+            if photoBook.collaborators
+              each photoBook.collaborators
                 .user-collab
                   span.userPill #{username} 
                   i.fa.fa-circle(class=userOnline)

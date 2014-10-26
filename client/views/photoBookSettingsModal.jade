@@ -1,0 +1,37 @@
+template(name='photoBookSettingsModal')
+  #photoBookSettingsModal.modal.fade(tabindex='-1', role='dialog' aria-hidden='true')
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal')
+            span(aria-hidden='true') ×
+            span.sr-only Close
+          h4.modal-title Settings
+        .modal-body
+          input.form-control#photoBookName(type='text', placeholder='Enter name for folder...', value=name, maxlength="25", min="1")
+          hr
+          if public
+            button.btn.btn-default#makePhotoBookPrivate Make This Photo Book Private
+            input.photo-book-public-url.form-control(type="text", name="photo-book-public-url", value="#{hostURL}{{pathFor 'publicPhotoBook' _id=_id}}" readonly)
+          else
+            button.btn.btn-default#makePhotoBookPublic Make This Photo Book Public
+          hr
+          button.btn.btn-default#addCollab Add / View Collaborators 
+            .fa.fa-users
+          hr
+          if photoBookOwner
+            hr
+            button.btn.btn-danger#deletePhotoBook
+              .fa.fa-trash 
+              | Move To Trash
+        .modal-footer
+          .save-close
+            button.btn.btn-default(type='button', data-dismiss='modal') Close
+            //-button.btn.btn-primary#save(type='submit') Save changes
+          .delete-photo-book
+            .row-fluid
+              .col-sm-5.pull-left
+                span.pull-right Are you sure?
+              .col-sm-7.pull-right
+                button.btn.btn-default#cancelDelete(type='button') No Cancel
+                button.btn.btn-danger#deletePhotoBookConfirm(type='button') Yes throw Photo Book into the Trash

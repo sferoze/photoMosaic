@@ -23,27 +23,27 @@
 #           userId: userId
 #           field: true
 Template.dashboard.helpers
-  myPhotoCollections: ->
-    PhotoCollections.find()
+  myphotoBooks: ->
+    PhotoBooks.find()
 
 Template.dashboard.events
-  'click #addPhotoCollection': (e, t) ->
+  'click #addPhotoBook': (e, t) ->
 
-    Meteor.call 'addPhotoCollection', (err, photoCollectionId) ->
-      photoCollectionDoc = PhotoCollections.findOne({_id: photoCollectionId})
-      template = Blaze.renderWithData Template.photoCollectionSettingsModal, photoCollectionDoc, document.body
+    Meteor.call 'addPhotoBook', (err, photoBookId) ->
+      photoBookDoc = PhotoBooks.findOne({_id: photoBookId})
+      template = Blaze.renderWithData Template.photoBookSettingsModal, photoBookDoc, document.body
       $(template.firstNode()).modal 'show'
 
       Meteor.defer ->
-        t.$('#photoCollectionsGrid').masonry('reloadItems')
-        t.$('#photoCollectionsGrid').masonry()
+        t.$('#photoBooksGrid').masonry('reloadItems')
+        t.$('#photoBooksGrid').masonry()
 
       $(template.firstNode()).one 'hidden.bs.modal', (e) ->
         Blaze.remove template
 
   'click .open-settings': (e, t) ->
-
-    template = Blaze.renderWithData Template.photoCollectionSettingsModal, @, document.body
+    e.preventDefault()
+    template = Blaze.renderWithData Template.photoBookSettingsModal, @, document.body
     $(template.firstNode()).modal 'show'
 
     $(template.firstNode()).one 'hidden.bs.modal', (e) ->
@@ -53,10 +53,10 @@ Template.dashboard.events
 Template.dashboard.rendered = ->
   console.log 'rendered'
 
-  $container = @$('#photoCollectionsGrid')
+  $container = @$('#photoBooksGrid')
   $container.masonry
     #columnWidth: 130,
-    itemSelector: '.photo-collection-item',
+    itemSelector: '.photo-book-item',
     gutterWidth: 0,
     isResizable: true
 
