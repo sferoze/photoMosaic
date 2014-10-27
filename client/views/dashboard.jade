@@ -4,6 +4,7 @@ template(name='dashboard')
     #photoBooksGrid
       each myphotoBooks
         +photoBookItem
+        +addCollabModal
 
 template(name='photoBookItem')
   a.photo-book-item(href='{{pathFor "photoBookPage" _id=this._id}}')

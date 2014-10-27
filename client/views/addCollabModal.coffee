@@ -28,24 +28,18 @@ Template.addCollabModal.events
 
 Template.addCollabModal.helpers
   allowedToRemove: ->
-    t = UI._templateInstance()
-    Meteor.userId() is @userId or t.data.photoBook.userId is Meteor.userId()
+    Meteor.userId() is @userId
   owner: ->
-    t = UI._templateInstance()
-    t.data.photoBook.userId is Meteor.userId()
+    @userId is Meteor.userId()
   userOnline: ->
-
     userOnlineClassHelper @userId
   adminOnline: ->
-
-    userOnlineClassHelper @photoBook.userId
+    userOnlineClassHelper @userId
   ownerUsername: ->
-    #user = Meteor.users.findOne({_id: @researchThread.userId}, {fields: {username: 1, 'profile.firstName': 1, 'profile.lastName': 1}})
-    user = Meteor.users.findOne({_id: @photoBook.userId}, {fields: {username: 1}})
+    user = Meteor.users.findOne({_id: @userId}, {fields: {username: 1}})
     user.username
   ownerId: ->
-    t = UI._templateInstance()
-    t.data.photoBook.userId
+    @userId
   username: ->
     user = Meteor.users.findOne({_id: @userId})
     user.username

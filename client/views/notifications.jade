@@ -1,0 +1,42 @@
+template(name='notifications')
+  a.dropdown-toggle(href='#', data-toggle='dropdown') 
+    .fa.fa-bell-o
+    if notificationCount
+      span.badge.badge-inverse #{notificationCount}
+    b.caret
+  ul.notifications.dropdown-menu
+    if notificationCount
+      each notifications
+        +notification
+        hr
+    else
+      .notification
+        .text No New Notifications
+    li
+      a.view-all#viewAllNotifications(href='#') View All Notifications
+
+
+//- This template checks the type field of notification data and checks which notification template to display 
+template(name='notification')
+  .notification
+    if requestCollabForPhotoBook
+      +requestCollabNotif
+    else if basicNotification
+      +basicNotif
+
+template(name='requestCollabNotif')
+  .text 
+    a(href='/users/#{requesterUsername}') #{requesterUsername} 
+    | would like to add you as a collaborator for the photobook 
+    b #{photoBookName}.
+  .buttons
+    .btn.btn-default.accept-collab Accept
+    .btn.btn-default.deny-collab Deny
+
+template(name='basicNotif')
+  if moreThanOneNotifAction
+    .text.hover 
+      b (#{qty}) 
+      | #{msg}
+  else
+    .text.hover #{msg}

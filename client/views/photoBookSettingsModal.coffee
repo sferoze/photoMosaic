@@ -2,6 +2,12 @@ Template.photoBookSettingsModal.helpers
   photoBookOwner: ->
     @userId is Meteor.userId()
 
+Template.photoBookSettingsModal.events
+  'click #addCollab': (e) ->
+    e.preventDefault()
+    $('#photoBookSettingsModal').modal 'hide'
+    $('#addCollabModal').modal 'show'
+
 
 Template.photoBookSettingsModal.rendered = ->
   console.log 'test'
